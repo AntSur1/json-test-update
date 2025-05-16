@@ -22,8 +22,10 @@ jobs:
 
     - name: Commit changes
       run: |
+        git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/AntSur1/json-test-update.git
         git add data.json
         git commit -m "Update data.json from input.txt"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+
