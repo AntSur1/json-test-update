@@ -6,6 +6,22 @@
 <body>
   <input type="text" id="textInput" placeholder="Enter data" />
   <button id="updateButton">Update</button>
+  <br>
+  <pre id="jsonDisplay">Loading data...</pre>
+
+  <script>
+    fetch('data.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById('jsonDisplay').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById('jsonDisplay').textContent = 'Failed to load data: ' + error;
+      });
+  </script>
 
   <script>
     document.getElementById('updateButton').addEventListener('click', () => {

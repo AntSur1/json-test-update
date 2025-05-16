@@ -1,7 +1,9 @@
 name: Update JSON
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - input.txt
 
 jobs:
   update:
