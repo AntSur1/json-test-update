@@ -3,7 +3,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   const status = document.getElementById('status');
 
   const res = await fetch(
-    "https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/actions/workflows/update-json.yml/dispatches",
+    "https://api.github.com/repos/AntSur1/json-test-update/actions/workflows/update-json.yml/dispatches",
     {
       method: "POST",
       headers: {

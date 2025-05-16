@@ -1,0 +1,29 @@
+name: Update JSON
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Git
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+
+    - name: Read input and update data.json
+      run: |
+        INPUT=$(cat input.txt)
+        echo "{ \"message\": \"$INPUT\" }" > data.json
+
+    - name: Commit changes
+      run: |
+        git add data.json
+        git commit -m "Update data.json from input.txt"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>JSON Updater</title>
+  <title>Update JSON</title>
 </head>
 <body>
-  <h1>Update JSON</h1>
-  <input type="text" id="userInput" placeholder="Enter text" />
-  <button id="submitBtn">Update JSON</button>
+  <input type="text" id="textInput" placeholder="Enter data" />
+  <button id="updateButton">Update</button>
 
-  <p id="status"></p>
-
-  <script src="script.js"></script>
+  <script>
+    document.getElementById('updateButton').addEventListener('click', () => {
+      const value = document.getElementById('textInput').value;
+      fetch('input.txt', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'text/plain'
+        },
+        body: value
+      }).then(() => {
+        alert("Input saved. Now go trigger the GitHub Action.");
+      }).catch(console.error);
+    });
+  </script>
 </body>
 </html>
